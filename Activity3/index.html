@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+</head>
+<style>
+    .container {
+        width: 25%;
+        margin: auto;
+        border: 2px solid black;
+        padding: 5px;
+        background-color:rgb(17, 226, 226);
+        border-radius: 10px;
+        justify-items: center;
+        align-items: center;
+    }
+    h3 {
+        text-align: center;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+    ol > li {
+        padding: 2px;
+        text-transform: capitalize;
+        font-size: medium;
+        font-weight: 700;
+
+    }
+    #task-input {
+        padding: 1px;
+        font-size: medium;
+        margin-bottom: 5px;
+    }
+    button {
+        display: flex;
+        justify-self:center;
+        background-color: #27445D;
+        padding: 5px;
+        font-size: small;
+        font-weight: bold;
+        color: white;
+        text-align: center;
+    }
+</style>
+<body >
+    <div class="container">
+        <div class="form">
+            <h3>To-Do List</h3>
+            
+            <input type="text" placeholder="Enter task" id="task-input">
+            <button onclick="addTask()">Add Task</button>
+            <ol id="task-list">
+            </ol>
+        </div>
+     
+    </div>
+    
+</body>
+<script>
+    function addTask(){
+        let newTask = document.createElement("li");
+        let taskname = document.getElementById("task-input");
+        newTask.innerText = taskname.value;
+        newTask.setAttribute("onclick","closetask(this);");
+        document.getElementById('task-list').appendChild(newTask);
+        taskname.value = "";
+    }
+    function closetask(test){
+        test.style.opacity = '.50';
+        test.style.textDecoration ='line-through';
+        test.removeAttribute("onclick")
+        test.setAttribute("onclick","opentask(this);");
+    }
+
+    function opentask(test){
+        test.style.opacity = '1';
+        test.style.textDecoration ='none';
+        test.removeAttribute("onclick")
+        test.setAttribute("onclick","closetask(this);");
+    }
+    
+
+</script>
+</html>
